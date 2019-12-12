@@ -27,7 +27,14 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		total += calcFuel(mass)
+		moduleMass := calcFuel(mass)
+		total += moduleMass
+		for moduleMass > 0 {
+			moduleMass = calcFuel(moduleMass)
+			if moduleMass > 0 {
+				total += moduleMass
+			}
+		}
 	}
 
 	fmt.Println(total)
